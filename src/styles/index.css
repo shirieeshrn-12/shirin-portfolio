@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-cream: #F7F3EC;
+    --text-charcoal: #3B3A33;
+    --accent-orange: #FFA94D;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #F7F3EC;
+    color: #3B3A33;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Custom selection */
+  ::selection {
+    background-color: rgba(255, 169, 77, 0.35);
+    color: #201F1C;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F7F3EC;
+  }
+  .dark ::-webkit-scrollbar-track {
+    background: #171614;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #E2D7C3;
+    border-radius: 9999px;
+    border: 2px solid #F7F3EC;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: #3D3931;
+    border: 2px solid #171614;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FFA94D;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Fredoka', 'Baloo 2', system-ui, sans-serif;
+  }
+  .font-script {
+    font-family: 'Caveat', cursive;
+  }
+  
+  /* Text shadow for subtle 3D warmth */
+  .text-warm-shadow {
+    text-shadow: 0 2px 8px rgba(59, 58, 51, 0.08);
+  }
+}
+
+/* Waving emoji keyframes */
+@keyframes wave-hand {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-wave {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave-hand 2.2s infinite ease-in-out;
+}
+
+/* Subtle gentle floating animation */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.4deg);
+  }
+}
+
+.animate-gentle-float {
+  animation: gentle-float 6s ease-in-out infinite;
+}
+
+/* Reduce motion when user prefers */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
