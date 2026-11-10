@@ -124,9 +124,9 @@ export const Certificates: React.FC = () => {
                       
                       {/* Mobile Screenshot */}
                       <img
-                        src="/portfolio-preview.jpg"
+                        src="/portfolio-mobile-preview.jpg"
                         alt="Shirin Portfolio Website Mobile Screen"
-                        className="w-full h-full object-cover object-left-top group-hover/phone:scale-110 transition-transform duration-700 ease-out"
+                        className="w-full h-full object-cover object-center group-hover/phone:scale-105 transition-transform duration-700 ease-out"
                       />
 
                       {/* Mobile Glass Sheen Reflection */}
