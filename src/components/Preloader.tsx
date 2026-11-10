@@ -36,9 +36,9 @@ export const Preloader: React.FC<{ onComplete?: () => void }> = ({ onComplete })
             <div className="relative">
               <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-amberAccent shadow-xl shadow-amberAccent/30 bg-cream-200">
                 <img
-                  src="/avatar.png"
+                  src="/shirin-real.jpg"
                   alt="Shirin avatar"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-[center_15%]"
                 />
               </div>
 

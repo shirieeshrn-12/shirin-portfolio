@@ -70,24 +70,24 @@ export const Hero: React.FC = () => {
               className="relative z-10 w-full select-none"
             >
               <div className="relative group">
-                {/* Main Animated Avatar GIF */}
+                {/* Main Real Photo Avatar */}
                 <motion.div
                   initial={{ scale: 0.93, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.7, ease: [0.34, 1.3, 0.64, 1] }}
-                  className="relative rounded-[2.8rem] overflow-hidden shadow-2xl shadow-charcoal-800/15 border-4 border-cream-50/90 dark:border-darkBg-card animate-gentle-float aspect-square bg-cream-200 dark:bg-darkBg-card"
+                  className="relative rounded-[2.8rem] overflow-hidden shadow-2xl shadow-charcoal-800/15 border-4 border-cream-50/90 dark:border-darkBg-card animate-gentle-float aspect-[4/5] max-w-sm sm:max-w-md mx-auto bg-cream-200 dark:bg-darkBg-card"
                 >
                   <img
-                    src="/avatar.gif"
+                    src="/shirin-real.jpg"
                     alt="Shirin - CSE (AI) Student at Thejus College"
-                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-103"
+                    className="w-full h-full object-cover object-[center_15%] transform transition-transform duration-700 group-hover:scale-103"
                     onLoad={() => setImageLoaded(true)}
                   />
 
                   {/* Fallback shimmer while image loads */}
                   {!imageLoaded && (
                     <div className="absolute inset-0 bg-cream-300/50 dark:bg-darkBg-card animate-pulse flex items-center justify-center">
-                      <span className="font-display font-medium text-charcoal-600">Loading avatar...</span>
+                      <span className="font-display font-medium text-charcoal-600">Loading photo...</span>
                     </div>
                   )}
                 </motion.div>

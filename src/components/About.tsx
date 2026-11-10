@@ -78,9 +78,9 @@ export const About: React.FC = () => {
             <div className="relative rounded-[2.8rem] overflow-hidden bg-cream-200 dark:bg-darkBg-card border-4 border-cream-50 dark:border-darkBg-border shadow-2xl p-4">
               <div className="rounded-[2.2rem] overflow-hidden aspect-[4/5]">
                 <img
-                  src="/avatar.png"
+                  src="/shirin-real.jpg"
                   alt="Shirin at Thejus College"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-[center_15%] hover:scale-105 transition-transform duration-500"
                 />
               </div>
 
