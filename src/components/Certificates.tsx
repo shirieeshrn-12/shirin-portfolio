@@ -1,173 +1,143 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Award, CheckCircle2, ExternalLink, Sparkles, Trophy, BookOpen, ShieldCheck } from 'lucide-react';
-import { CERTIFICATES_DATA, CertificateItem } from '../data/portfolioData';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Layers, Github, ExternalLink, Sparkles, CheckCircle2, Code2, Globe } from 'lucide-react';
+import { PROJECTS } from '../data/projects';
 
 export const Certificates: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Horizontal scroll mapping for pinned section
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end']
-  });
-
-  // Transform vertical scroll progress into horizontal translation percentage
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-60%']);
-
-  const getIcon = (name: string) => {
-    switch (name) {
-      case 'award': return <Award className="w-6 h-6 text-amberAccent-dark" />;
-      case 'brain': return <Trophy className="w-6 h-6 text-mustard-dark" />;
-      case 'layout': return <BookOpen className="w-6 h-6 text-softTeal-dark" />;
-      case 'zap': return <Sparkles className="w-6 h-6 text-amberAccent-dark" />;
-      default: return <ShieldCheck className="w-6 h-6 text-emerald-600" />;
-    }
-  };
+  const project = PROJECTS[0];
 
   return (
-    <section id="certificates" className="relative bg-cream-100 dark:bg-darkBg-base transition-colors duration-300">
-      
-      {/* ========================================================================= */}
-      {/* DESKTOP (md+): Pinned Horizontal Scrolling Experience                      */}
-      {/* ========================================================================= */}
-      <div ref={containerRef} className="hidden md:block relative h-[240vh]">
-        <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden px-8 lg:px-14 py-12">
-          
-          {/* Header */}
-          <div className="max-w-6xl mx-auto w-full mb-8 flex items-end justify-between gap-4">
-            <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-softTeal/20 text-softTeal-dark dark:text-softTeal text-xs font-bold tracking-wider uppercase">
-                <Award className="w-3.5 h-3.5" />
-                <span>Recognition & Validation</span>
-              </div>
-              <h2 className="font-display font-bold text-4xl lg:text-5xl text-charcoal-900 dark:text-cream-100 tracking-tight">
-                Certifications & Hackathons.
-              </h2>
-              <p className="text-charcoal-600 dark:text-cream-300 text-base">
-                Scroll to explore courses completed, achievements, and competitive sprints.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-2 text-xs font-bold font-display text-amberAccent-dark dark:text-amberAccent">
-              <span>Scroll down to navigate cards →</span>
-            </div>
+    <section id="projects" className="py-24 px-6 md:px-12 bg-cream-100 dark:bg-darkBg-base transition-colors duration-300">
+      <div className="max-w-6xl mx-auto space-y-12">
+        
+        {/* Section Header */}
+        <div className="text-center space-y-4 max-w-2xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amberAccent/20 text-charcoal-900 dark:text-cream-100 text-xs font-bold tracking-wider uppercase">
+            <Layers className="w-3.5 h-3.5 text-amberAccent-dark" />
+            <span>Featured Project</span>
           </div>
-
-          {/* Horizontal Track */}
-          <div className="max-w-7xl mx-auto w-full overflow-visible">
-            <motion.div
-              style={{ x }}
-              className="flex gap-8 items-stretch"
-            >
-              {CERTIFICATES_DATA.map((cert) => (
-                <div
-                  key={cert.id}
-                  className="w-[400px] shrink-0 p-8 rounded-[2.2rem] bg-cream-50 dark:bg-darkBg-card border border-cream-200 dark:border-darkBg-border shadow-soft-warm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between space-y-6"
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="w-14 h-14 rounded-2xl bg-amberAccent/20 flex items-center justify-center">
-                      {getIcon(cert.iconName)}
-                    </div>
-                    <span className="px-3.5 py-1 rounded-full bg-cream-200 dark:bg-darkBg-surface text-charcoal-700 dark:text-cream-300 text-xs font-bold font-display">
-                      {cert.badgeText}
-                    </span>
-                  </div>
-
-                  <div className="space-y-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-amberAccent-dark dark:text-amberAccent">
-                      {cert.issuer} · {cert.date}
-                    </span>
-                    <h3 className="font-display font-bold text-2xl text-charcoal-900 dark:text-cream-100 leading-snug">
-                      {cert.title}
-                    </h3>
-                    <p className="text-charcoal-600 dark:text-cream-300 text-sm leading-relaxed pt-1">
-                      {cert.description}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 border-t border-cream-200 dark:border-darkBg-border flex items-center justify-between text-xs font-semibold text-charcoal-500 dark:text-cream-400">
-                    <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
-                      <CheckCircle2 className="w-4 h-4" />
-                      <span>Verified Credential</span>
-                    </div>
-                    <span className="font-mono text-[11px] text-charcoal-400">#AI-CSE</span>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Progress Indicator */}
-          <div className="max-w-6xl mx-auto w-full mt-8 flex justify-center">
-            <div className="h-1.5 w-44 rounded-full bg-cream-300/60 dark:bg-darkBg-border overflow-hidden">
-              <motion.div
-                style={{ scaleX: scrollYProgress }}
-                className="h-full bg-amberAccent origin-left rounded-full"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ========================================================================= */}
-      {/* MOBILE (md:hidden): Native Touch-Friendly Horizontal Swipe Carousel         */}
-      {/* ========================================================================= */}
-      <div className="md:hidden py-20 px-6 space-y-8">
-        <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-softTeal/20 text-softTeal-dark dark:text-softTeal text-xs font-bold tracking-wider uppercase">
-            <Award className="w-3.5 h-3.5" />
-            <span>Certifications</span>
-          </div>
-          <h2 className="font-display font-bold text-3xl text-charcoal-900 dark:text-cream-100 tracking-tight">
-            Recognitions & Courses.
+          <h2 className="font-display font-bold text-4xl sm:text-5xl text-charcoal-900 dark:text-cream-100 tracking-tight">
+            My Portfolio Project.
           </h2>
-          <p className="text-charcoal-600 dark:text-cream-300 text-sm">
-            Swipe left to view credentials and achievements.
+          <p className="text-charcoal-600 dark:text-cream-300 text-base sm:text-lg">
+            A modern, responsive creative portfolio engineered from scratch with React, TypeScript, and Firebase.
           </p>
         </div>
 
-        {/* Swipeable Container */}
-        <div className="flex gap-4 overflow-x-auto pb-4 pt-2 -mx-6 px-6 snap-x snap-mandatory scrollbar-none">
-          {CERTIFICATES_DATA.map((cert) => (
-            <div
-              key={cert.id}
-              className="w-[85vw] max-w-[340px] shrink-0 snap-center p-6 rounded-[2rem] bg-cream-50 dark:bg-darkBg-card border border-cream-200 dark:border-darkBg-border shadow-soft-warm flex flex-col justify-between space-y-4"
-            >
-              <div className="flex items-start justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-amberAccent/20 flex items-center justify-center">
-                  {getIcon(cert.iconName)}
+        {/* Featured Project Showcase Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="rounded-[2.8rem] bg-cream-50 dark:bg-darkBg-card border border-cream-200 dark:border-darkBg-border shadow-soft-warm hover:shadow-2xl transition-all duration-300 overflow-hidden p-6 sm:p-10 lg:p-12"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* Left: Project Visual Preview */}
+            <div className="lg:col-span-5 relative group">
+              <div className="relative rounded-[2.2rem] overflow-hidden aspect-[4/5] bg-cream-200 dark:bg-darkBg-surface border-4 border-cream-50 dark:border-darkBg-border shadow-xl">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover object-[center_15%] grayscale contrast-[1.08] group-hover:grayscale-0 group-hover:scale-104 transition-all duration-700 ease-out"
+                />
+                
+                {/* Live Status Badge */}
+                <div className="absolute top-4 left-4">
+                  <span className="px-3.5 py-1 rounded-full bg-cream-100/95 dark:bg-darkBg-card/95 text-charcoal-800 dark:text-cream-100 text-xs font-bold font-display shadow-sm backdrop-blur-md flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>Live on Firebase</span>
+                  </span>
                 </div>
-                <span className="px-3 py-0.5 rounded-full bg-cream-200 dark:bg-darkBg-surface text-charcoal-700 dark:text-cream-300 text-[11px] font-bold font-display">
-                  {cert.badgeText}
-                </span>
-              </div>
 
-              <div className="space-y-1.5">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-amberAccent-dark dark:text-amberAccent">
-                  {cert.issuer} · {cert.date}
-                </span>
-                <h3 className="font-display font-bold text-xl text-charcoal-900 dark:text-cream-100 leading-snug">
-                  {cert.title}
+                <div className="absolute bottom-4 right-4">
+                  <span className="px-3 py-1 rounded-full bg-amberAccent text-charcoal-900 text-xs font-bold font-display shadow-md">
+                    B.Tech CSE (AI)
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Project Narrative & Details */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amberAccent-dark dark:text-amberAccent">
+                  <Globe className="w-4 h-4" />
+                  <span>Production Web Application</span>
+                </div>
+                <h3 className="font-display font-bold text-3xl sm:text-4xl text-charcoal-900 dark:text-cream-100">
+                  {project.title}
                 </h3>
-                <p className="text-charcoal-600 dark:text-cream-300 text-xs leading-relaxed pt-1">
-                  {cert.description}
+                <p className="text-charcoal-700 dark:text-cream-300 text-base leading-relaxed">
+                  {project.fullDesc}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-cream-200 dark:border-darkBg-border flex items-center justify-between text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>Verified</span>
-                </div>
-                <span className="font-mono text-[10px] text-charcoal-400">#AI-CSE</span>
+              {/* Key Features & Highlights */}
+              <div className="space-y-2.5 pt-2">
+                <h4 className="font-display font-bold text-xs uppercase tracking-wider text-charcoal-500 dark:text-cream-400">
+                  Architecture & Features
+                </h4>
+                <ul className="space-y-2">
+                  {project.highlights.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5 text-sm text-charcoal-700 dark:text-cream-300">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
 
+              {/* Tech Stack Chips */}
+              <div className="space-y-2 pt-2">
+                <h4 className="font-display font-bold text-xs uppercase tracking-wider text-charcoal-500 dark:text-cream-400">
+                  Tech Stack
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((t) => (
+                    <span
+                      key={t}
+                      className="px-3 py-1 rounded-xl bg-cream-200 dark:bg-darkBg-surface text-charcoal-800 dark:text-cream-200 font-semibold text-xs"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-cream-200 dark:border-darkBg-border">
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-charcoal-900 text-cream-100 dark:bg-cream-100 dark:text-charcoal-900 font-display font-bold text-sm hover:scale-102 transition-transform shadow-md"
+                  >
+                    <Github className="w-4 h-4" />
+                    <span>View Repository on GitHub</span>
+                  </a>
+                )}
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-amberAccent hover:bg-amberAccent-hover text-charcoal-900 font-display font-bold text-sm hover:scale-102 transition-transform shadow-md shadow-amberAccent/30"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Open Live Website</span>
+                  </a>
+                )}
+              </div>
+
+            </div>
+
+          </div>
+        </motion.div>
+
+      </div>
     </section>
   );
 };
-

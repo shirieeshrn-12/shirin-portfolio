@@ -13,7 +13,7 @@ const navLinks = [
   { num: '02', title: 'About Shirin', href: '#about' },
   { num: '03', title: 'Skills & Stack', href: '#skills' },
   { num: '04', title: 'Academic Journey', href: '#journey' },
-  { num: '05', title: 'Certifications', href: '#certificates' },
+  { num: '05', title: 'Featured Projects', href: '#projects' },
   { num: '06', title: 'Get In Touch', href: '#contact' },
 ];
 
