@@ -1,42 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowUpRight, Sparkles, Heart } from 'lucide-react';
-import confetti from 'canvas-confetti';
+import { ArrowUpRight } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { useMagnetic } from '../hooks/useMagnetic';
-
-const GREETINGS = [
-  "Welcome to my portfolio! ✨",
-  "Glad you're here! 🌸",
-  "Be curious today :) 🚀",
-  "CSE (AI) student @ Thejus 🎓"
-];
 
 export const Hero: React.FC = () => {
   const ctaRef = useMagnetic<HTMLAnchorElement>(0.25);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [isWaving, setIsWaving] = useState(true);
-  const [greetingIndex, setGreetingIndex] = useState(0);
-
-  // Trigger active waving for 3.5s on initial mount
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsWaving(false);
-    }, 3500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleWaveClick = () => {
-    setIsWaving(true);
-    setGreetingIndex((prev) => (prev + 1) % GREETINGS.length);
-    confetti({
-      particleCount: 40,
-      spread: 50,
-      origin: { y: 0.45, x: 0.3 },
-      colors: ['#FFA94D', '#F2C14E', '#7FBFC4']
-    });
-    setTimeout(() => setIsWaving(false), 2000);
-  };
 
   // Parallax mouse effect
   const mouseX = useMotionValue(0);
@@ -100,59 +70,15 @@ export const Hero: React.FC = () => {
               className="relative z-10 w-full select-none"
             >
               <div className="relative group">
-                {/* Waving Speech Bubble saying "Hi!" */}
-                <motion.div
-                  initial={{ scale: 0, opacity: 0, y: 15 }}
-                  animate={{ scale: 1, opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8, type: 'spring', damping: 14 }}
-                  onClick={handleWaveClick}
-                  className="absolute -top-5 -right-2 sm:-top-7 sm:-right-4 z-30 cursor-pointer select-none"
-                  title="Click to say hi!"
-                >
-                  <div className="relative bg-cream-50/98 dark:bg-darkBg-card border-2 border-amberAccent py-2 px-3.5 sm:py-2.5 sm:px-4 rounded-3xl shadow-xl shadow-amberAccent/20 backdrop-blur-md flex items-center gap-2.5 sm:gap-3 hover:scale-105 active:scale-95 transition-transform">
-                    {/* Hand Waving Animation */}
-                    <motion.span
-                      animate={
-                        isWaving
-                          ? { rotate: [0, 32, -22, 32, -15, 24, 0] }
-                          : { rotate: [0, 16, -10, 16, 0] }
-                      }
-                      transition={{
-                        duration: isWaving ? 0.9 : 2.2,
-                        repeat: Infinity,
-                        ease: 'easeInOut'
-                      }}
-                      className="text-3xl sm:text-4xl inline-block origin-bottom-right filter drop-shadow"
-                    >
-                      👋
-                    </motion.span>
-
-                    <div className="text-left">
-                      <div className="flex items-center gap-1.5">
-                        <span className="font-display font-bold text-xs sm:text-sm text-charcoal-900 dark:text-cream-100">
-                          Hi! I'm Shirin
-                        </span>
-                        <Sparkles className="w-3.5 h-3.5 text-amberAccent fill-amberAccent" />
-                      </div>
-                      <p className="text-[10px] sm:text-[11px] font-medium text-charcoal-600 dark:text-cream-300">
-                        {GREETINGS[greetingIndex]}
-                      </p>
-                    </div>
-
-                    {/* Speech pointer tail */}
-                    <div className="absolute -bottom-1.5 left-8 w-3 h-3 bg-cream-50 dark:bg-darkBg-card border-r-2 border-b-2 border-amberAccent rotate-45 transform" />
-                  </div>
-                </motion.div>
-
-                {/* Main Avatar Image with Greeting Entrance */}
+                {/* Main Animated Avatar GIF */}
                 <motion.div
                   initial={{ scale: 0.93, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.7, ease: [0.34, 1.3, 0.64, 1] }}
-                  className="relative rounded-[2.8rem] overflow-hidden shadow-2xl shadow-charcoal-800/15 border-4 border-cream-50/90 dark:border-darkBg-card animate-gentle-float aspect-square"
+                  className="relative rounded-[2.8rem] overflow-hidden shadow-2xl shadow-charcoal-800/15 border-4 border-cream-50/90 dark:border-darkBg-card animate-gentle-float aspect-square bg-cream-200 dark:bg-darkBg-card"
                 >
                   <img
-                    src="/avatar.png"
+                    src="/avatar.gif"
                     alt="Shirin - CSE (AI) Student at Thejus College"
                     className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-103"
                     onLoad={() => setImageLoaded(true)}
