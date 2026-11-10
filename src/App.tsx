@@ -9,7 +9,6 @@ import { FullscreenMenu } from './components/FullscreenMenu';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Skills } from './components/Skills';
-import { Projects } from './components/Projects';
 import { JourneyTimeline } from './components/JourneyTimeline';
 import { Certificates } from './components/Certificates';
 import { Contact } from './components/Contact';
@@ -41,7 +40,6 @@ const AppContent: React.FC = () => {
         <Hero />
         <About />
         <Skills />
-        <Projects />
         <JourneyTimeline />
         <Certificates />
         <Contact />

@@ -12,10 +12,9 @@ const navLinks = [
   { num: '01', title: 'Hero / Home', href: '#hero' },
   { num: '02', title: 'About Shirin', href: '#about' },
   { num: '03', title: 'Skills & Stack', href: '#skills' },
-  { num: '04', title: 'Featured Projects', href: '#projects' },
-  { num: '05', title: 'Academic Journey', href: '#journey' },
-  { num: '06', title: 'Certifications', href: '#certificates' },
-  { num: '07', title: 'Get In Touch', href: '#contact' },
+  { num: '04', title: 'Academic Journey', href: '#journey' },
+  { num: '05', title: 'Certifications', href: '#certificates' },
+  { num: '06', title: 'Get In Touch', href: '#contact' },
 ];
 
 export const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ isOpen, onClose }) => {
