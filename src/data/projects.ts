@@ -9,7 +9,7 @@ export const PROJECTS: Project[] = [
     fullDesc: "Designed and engineered as a modern, friendly developer portfolio for a first-year CSE (AI) student. Built with React 18, TypeScript, and Tailwind CSS, featuring split-hero architecture, custom cursor interactions, Framer Motion micro-interactions, dark/light theme switching, and continuous CI/CD via GitHub Actions and Firebase Hosting.",
     technologies: ["React 18", "TypeScript", "Tailwind CSS", "Framer Motion", "Lenis", "Firebase Hosting", "Vite"],
     metrics: "Live on Firebase · 100% Responsive",
-    image: "/shirin-about.jpg",
+    image: "/portfolio-preview.jpg",
     githubUrl: "https://github.com/shirieeshrn-12/shirin-portfolio",
     liveUrl: "https://shirin-shriee.web.app",
     featured: true,
