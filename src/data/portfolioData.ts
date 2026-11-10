@@ -74,7 +74,7 @@ export const PERSONAL_INFO = {
     github: "https://github.com/shirieeshrn-12",
     linkedin: "https://linkedin.com",
     instagram: "https://instagram.com",
-    email: "shirin.thejus@gmail.com",
+    email: "shirieeshrn@gmail.com",
   },
   resumeUrl: "#"
 };
