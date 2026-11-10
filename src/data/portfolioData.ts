@@ -54,7 +54,7 @@ export const PERSONAL_INFO = {
   degree: "B.Tech Computer Science & Engineering (Artificial Intelligence)",
   year: "1st Year (2024 - 2028)",
   headlineGreeting: "Hey!",
-  headlineHand: "🤝",
+  headlineHand: "👋",
   tagline: "Be curious today :)",
   subheading: "I'm Shirin, a CSE (AI) student who loves building smart, beautiful things.",
   introParagraph: "First-year B.Tech CSE (Artificial Intelligence) student at Thejus College, Thrissur, Kerala. I sit at the playful crossroads of machine learning, modern web engineering, and thoughtful UI/UX—crafting software that is both intelligent under the hood and warm on the surface.",
