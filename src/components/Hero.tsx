@@ -80,7 +80,7 @@ export const Hero: React.FC = () => {
                   <img
                     src="/shirin-real.jpg"
                     alt="Shirin - CSE (AI) Student at Thejus College"
-                    className="w-full h-full object-cover object-[center_15%] transform transition-transform duration-700 group-hover:scale-103"
+                    className="w-full h-full object-cover object-[center_15%] grayscale contrast-[1.08] brightness-[0.98] transform transition-all duration-700 group-hover:scale-103"
                     onLoad={() => setImageLoaded(true)}
                   />
 

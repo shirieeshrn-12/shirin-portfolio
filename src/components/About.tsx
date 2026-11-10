@@ -80,7 +80,7 @@ export const About: React.FC = () => {
                 <img
                   src="/shirin-real.jpg"
                   alt="Shirin at Thejus College"
-                  className="w-full h-full object-cover object-[center_15%] hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-[center_15%] grayscale contrast-[1.08] brightness-[0.98] hover:scale-105 transition-all duration-500"
                 />
               </div>
 
