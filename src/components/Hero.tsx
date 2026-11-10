@@ -54,55 +54,28 @@ export const Hero: React.FC = () => {
       <div className="w-full min-h-screen flex flex-col lg:flex-row items-stretch">
         
         {/* ========================================================================= */}
-        {/* LEFT COLUMN: 3D Avatar Scene + Floating Tags & Background Room Elements */}
+        {/* LEFT COLUMN: Clean 3D Avatar Scene (New Avatar)                           */}
         {/* ========================================================================= */}
-        <div className="relative w-full lg:w-[48%] flex flex-col justify-between p-6 sm:p-10 lg:p-14 z-10">
+        <div className="relative w-full lg:w-[48%] flex items-center justify-center p-6 sm:p-10 lg:p-14 z-10">
           
-          {/* Top Left Tags & Capability List (matches reference layout) */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="pt-16 sm:pt-20 lg:pt-24 z-20 space-y-2.5"
-          >
-            <div className="space-y-0.5">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-amberAccent-dark dark:text-amberAccent">
-                First-Year CSE (Artificial Intelligence)
-              </span>
-              <h3 className="font-display font-bold text-xl md:text-2xl text-charcoal-900 dark:text-cream-100 tracking-tight">
-                Thejus College, Thrissur
-              </h3>
-            </div>
-
-            {/* Capability Tag list under name */}
-            <ul className="text-xs md:text-sm font-medium text-charcoal-700/80 dark:text-cream-300/80 space-y-1 pt-1">
-              {PERSONAL_INFO.tags.map((tag) => (
-                <li key={tag} className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amberAccent" />
-                  <span>{tag}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
           {/* Central 3D Avatar Illustration Container */}
-          <div className="relative my-auto py-6 sm:py-10 flex items-center justify-center">
+          <div className="relative w-full max-w-md md:max-w-lg my-auto py-4 flex items-center justify-center">
             
-            {/* Soft backdrop glow matching room atmosphere */}
-            <div className="absolute inset-0 max-w-md mx-auto aspect-square rounded-full bg-gradient-to-tr from-softTeal/30 via-cream-200 to-amberAccent/20 dark:from-darkBg-card dark:to-softTeal-dark/20 blur-2xl transform -translate-y-4" />
+            {/* Soft ambient backdrop glow */}
+            <div className="absolute inset-0 max-w-md mx-auto aspect-square rounded-full bg-gradient-to-tr from-softTeal/30 via-cream-200 to-amberAccent/20 dark:from-darkBg-card dark:to-softTeal-dark/20 blur-3xl transform -translate-y-2 pointer-events-none" />
 
             {/* Parallax & Gentle Idle Floating Wrapper */}
             <motion.div
               style={{ x: avatarX, y: avatarY }}
-              className="relative z-10 w-full max-w-md md:max-w-lg select-none"
+              className="relative z-10 w-full select-none"
             >
               <div className="relative group">
                 {/* Main Avatar Image */}
-                <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-charcoal-800/10 border-4 border-cream-50/80 dark:border-darkBg-card animate-gentle-float">
+                <div className="relative rounded-[2.8rem] overflow-hidden shadow-2xl shadow-charcoal-800/15 border-4 border-cream-50/90 dark:border-darkBg-card animate-gentle-float aspect-square">
                   <img
                     src="/avatar.png"
-                    alt="Shirin - 3D illustrated avatar seated at study desk with laptop and plants"
-                    className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-102"
+                    alt="Shirin - CSE (AI) Student at Thejus College"
+                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-103"
                     onLoad={() => setImageLoaded(true)}
                   />
 
@@ -113,42 +86,8 @@ export const Hero: React.FC = () => {
                     </div>
                   )}
                 </div>
-
-                {/* Floating Badge 1: College Info */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
-                  className="absolute -bottom-4 -left-3 sm:-left-6 bg-cream-50/95 dark:bg-darkBg-card border border-cream-300 dark:border-darkBg-border py-2 px-3.5 rounded-2xl shadow-lg backdrop-blur-md flex items-center gap-2.5 z-20"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-amberAccent/20 flex items-center justify-center text-amberAccent-dark">
-                    <BookOpen className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-charcoal-500 dark:text-cream-400">Student</p>
-                    <p className="text-xs font-bold text-charcoal-800 dark:text-cream-100 font-display">Thejus College</p>
-                  </div>
-                </motion.div>
-
-                {/* Floating Badge 2: Location Thrissur, Kerala */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.7, duration: 0.5 }}
-                  className="absolute -top-3 -right-2 sm:-right-4 bg-cream-50/95 dark:bg-darkBg-card border border-cream-300 dark:border-darkBg-border py-2 px-3.5 rounded-2xl shadow-lg backdrop-blur-md flex items-center gap-2 z-20"
-                >
-                  <MapPin className="w-4 h-4 text-rose-500" />
-                  <span className="text-xs font-semibold text-charcoal-800 dark:text-cream-100 font-display">
-                    Thrissur, Kerala 🌴
-                  </span>
-                </motion.div>
               </div>
             </motion.div>
-          </div>
-
-          {/* Bottom left subtle status note */}
-          <div className="text-xs text-charcoal-600/70 dark:text-cream-400/60 z-10 hidden sm:block">
-            <span>Specialization: Artificial Intelligence & Machine Learning</span>
           </div>
         </div>
 
