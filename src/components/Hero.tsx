@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Sparkles } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { useMagnetic } from '../hooks/useMagnetic';
 
@@ -8,7 +8,7 @@ export const Hero: React.FC = () => {
   const ctaRef = useMagnetic<HTMLAnchorElement>(0.25);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  // Parallax mouse effect
+  // Parallax & 3D tilt mouse physics
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -16,8 +16,10 @@ export const Hero: React.FC = () => {
   const smoothMouseX = useSpring(mouseX, springConfig);
   const smoothMouseY = useSpring(mouseY, springConfig);
 
-  const avatarX = useTransform(smoothMouseX, [-0.5, 0.5], [-12, 12]);
-  const avatarY = useTransform(smoothMouseY, [-0.5, 0.5], [-10, 10]);
+  const avatarX = useTransform(smoothMouseX, [-0.5, 0.5], [-14, 14]);
+  const avatarY = useTransform(smoothMouseY, [-0.5, 0.5], [-12, 12]);
+  const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [8, -8]);
+  const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-10, 10]);
   const bgShapeX = useTransform(smoothMouseX, [-0.5, 0.5], [15, -15]);
   const bgShapeY = useTransform(smoothMouseY, [-0.5, 0.5], [15, -15]);
 
@@ -54,33 +56,68 @@ export const Hero: React.FC = () => {
       <div className="w-full min-h-screen flex flex-col lg:flex-row items-stretch">
         
         {/* ========================================================================= */}
-        {/* LEFT COLUMN: Clean 3D Avatar Scene (New Avatar)                           */}
+        {/* LEFT COLUMN: Modern Interactive 3D Tilt & Parallax Portrait              */}
         {/* ========================================================================= */}
-        <div className="relative w-full lg:w-[48%] flex items-center justify-center p-6 sm:p-10 lg:p-14 z-10">
+        <div className="relative w-full lg:w-[48%] flex items-center justify-center p-6 sm:p-10 lg:p-14 z-10 [perspective:1000px]">
           
-          {/* Central 3D Avatar Illustration Container */}
-          <div className="relative w-full max-w-md md:max-w-lg my-auto py-4 flex items-center justify-center">
+          {/* Central Portrait Container */}
+          <div className="relative w-full max-w-sm sm:max-w-md my-auto py-6 flex items-center justify-center">
             
-            {/* Soft ambient backdrop glow */}
-            <div className="absolute inset-0 max-w-md mx-auto aspect-square rounded-full bg-gradient-to-tr from-softTeal/30 via-cream-200 to-amberAccent/20 dark:from-darkBg-card dark:to-softTeal-dark/20 blur-3xl transform -translate-y-2 pointer-events-none" />
-
-            {/* Parallax & Gentle Idle Floating Wrapper */}
+            {/* Animated breathing aura glow */}
             <motion.div
-              style={{ x: avatarX, y: avatarY }}
+              animate={{
+                scale: [1, 1.08, 1],
+                opacity: [0.45, 0.75, 0.45]
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute inset-0 aspect-square rounded-full bg-gradient-to-tr from-amberAccent/25 via-mustard/20 to-softTeal/30 dark:from-amberAccent/15 dark:via-darkBg-card dark:to-softTeal-dark/20 blur-3xl pointer-events-none"
+            />
+
+            {/* Parallax & 3D Tilt Wrapper */}
+            <motion.div
+              style={{
+                x: avatarX,
+                y: avatarY,
+                rotateX,
+                rotateY,
+                transformStyle: 'preserve-3d'
+              }}
               className="relative z-10 w-full select-none"
             >
-              <div className="relative group">
-                {/* Main Real Photo Avatar */}
+              <div className="relative group cursor-pointer">
+                
+                {/* Rotating decorative orbital accent ring */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
+                  className="absolute -inset-3 sm:-inset-5 rounded-[3.2rem] border border-dashed border-amberAccent/35 pointer-events-none"
+                />
+
+                {/* Floating Top-Right Sparkle Badge */}
+                <motion.div
+                  animate={{ rotate: [0, 10, -10, 0], y: [0, -4, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute -top-3 -right-2 sm:-right-4 z-20 w-11 h-11 rounded-2xl bg-amberAccent text-charcoal-900 shadow-lg shadow-amberAccent/30 flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300"
+                  title="Creative Thinker"
+                >
+                  <Sparkles className="w-5 h-5 fill-charcoal-900" />
+                </motion.div>
+
+                {/* Main Card with 3D shadow & gentle float */}
                 <motion.div
                   initial={{ scale: 0.93, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.7, ease: [0.34, 1.3, 0.64, 1] }}
-                  className="relative rounded-[2.8rem] overflow-hidden shadow-2xl shadow-charcoal-800/15 border-4 border-cream-50/90 dark:border-darkBg-card animate-gentle-float aspect-[4/5] max-w-sm sm:max-w-md mx-auto bg-cream-200 dark:bg-darkBg-card"
+                  className="relative rounded-[2.8rem] overflow-hidden shadow-2xl shadow-charcoal-900/20 dark:shadow-black/50 border-4 border-cream-50/90 dark:border-darkBg-card group-hover:border-amberAccent/80 animate-gentle-float aspect-[4/5] bg-cream-200 dark:bg-darkBg-card transition-colors duration-500"
                 >
+                  {/* Dynamic glass light reflection sheen on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none z-10" />
+
+                  {/* Portrait with smooth grayscale -> subtle color reveal on hover */}
                   <img
                     src="/shirin-real.jpg"
                     alt="Shirin - CSE (AI) Student at Thejus College"
-                    className="w-full h-full object-cover object-[center_15%] grayscale contrast-[1.08] brightness-[0.98] transform transition-all duration-700 group-hover:scale-103"
+                    className="w-full h-full object-cover object-[center_15%] grayscale contrast-[1.08] brightness-[0.98] group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 transform transition-all duration-700 ease-out group-hover:scale-105"
                     onLoad={() => setImageLoaded(true)}
                   />
 
@@ -91,6 +128,19 @@ export const Hero: React.FC = () => {
                     </div>
                   )}
                 </motion.div>
+
+                {/* Floating Bottom-Left Pill Badge: College & Specialization */}
+                <motion.div
+                  animate={{ y: [0, 4, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute -bottom-3.5 -left-2 sm:-left-4 z-20 py-2 px-3.5 rounded-2xl bg-cream-50/95 dark:bg-darkBg-card/95 border border-cream-200/90 dark:border-darkBg-border shadow-lg backdrop-blur-md flex items-center gap-2 group-hover:scale-105 transition-transform duration-300"
+                >
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="font-display font-bold text-xs text-charcoal-900 dark:text-cream-100">
+                    CSE (AI) · Thejus College
+                  </span>
+                </motion.div>
+
               </div>
             </motion.div>
           </div>
